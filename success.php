@@ -1,6 +1,9 @@
 <?php
 include 'db.php';
 
+$message = "";
+$redirect = "donor_dashboard.php";
+
 if(isset($_GET['tran_id'])){
 
     $tran_id = $_GET['tran_id'];
@@ -30,11 +33,59 @@ if(isset($_GET['tran_id'])){
                             SET raised_amount = raised_amount + $amount
                             WHERE id='$campaign_id'");
 
-        echo "<h2>Payment Successful!</h2>";
-        echo "<p>Thank you for your donation ❤️</p>";
+        $message = "🎉 Payment Successful! <br> Thank you for your donation ❤️";
     }
     else{
-        echo "<h2>Transaction already processed or not found.</h2>";
+        $message = "⚠ Transaction already processed or not found.";
     }
 }
 ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Payment Status</title>
+
+<style>
+body{
+    font-family:Arial, sans-serif;
+    background:#f4f6f9;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    margin:0;
+}
+
+.success-box{
+    background:white;
+    padding:40px;
+    border-radius:12px;
+    box-shadow:0px 2px 15px rgba(0,0,0,0.1);
+    text-align:center;
+}
+
+.success-box h2{
+    color:#28a745;
+}
+
+.success-box p{
+    color:#555;
+    font-size:18px;
+}
+</style>
+
+<!-- Auto redirect after 4 seconds -->
+<meta http-equiv="refresh" content="4;url=<?php echo $redirect; ?>">
+
+</head>
+
+<body>
+
+<div class="success-box">
+    <h2><?php echo $message; ?></h2>
+    <p>You will be redirected to your dashboard shortly...</p>
+</div>
+
+</body>
+</html>

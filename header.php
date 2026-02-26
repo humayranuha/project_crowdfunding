@@ -67,11 +67,12 @@ nav a:hover{
 
         <?php if($_SESSION['role'] == 'admin'){ ?>
             <a href="admin_dashboard.php">Dashboard</a>
-            <a href="browse_campaigns.php">Browse Campaigns</a>
+            <a href="show_campaigns.php">All Campaigns</a>
         <?php } ?>
 
         <?php if($_SESSION['role'] == 'organizer'){ ?>
             <a href="organizer_dashboard.php">Dashboard</a>
+            <a href="show_campaigns.php">All Campaigns</a>
         <?php } ?>
 
         <?php if($_SESSION['role'] == 'donor'){ ?>
