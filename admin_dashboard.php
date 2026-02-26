@@ -1,9 +1,10 @@
 <?php
+session_start();
 include 'db.php';
 include 'header.php';
 include 'progress_bar.php';
 
-if($_SESSION['role'] != 'admin'){
+if(!isset($_SESSION['role']) || $_SESSION['role'] != 'admin'){
     header("Location: index.php");
     exit();
 }

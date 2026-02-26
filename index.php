@@ -1,5 +1,26 @@
 <?php
+session_start();
 include 'db.php';
+
+// Redirect logged-in users to their dashboard
+if(isset($_SESSION['role'])){
+
+    if($_SESSION['role'] == 'admin'){
+        header("Location: admin_dashboard.php");
+        exit();
+    }
+
+    if($_SESSION['role'] == 'organizer'){
+        header("Location: organizer_dashboard.php");
+        exit();
+    }
+
+    if($_SESSION['role'] == 'donor'){
+        header("Location: donor_dashboard.php");
+        exit();
+    }
+}
+
 include 'header.php';
 include 'progress_bar.php';
 
